@@ -39,25 +39,22 @@ module.exports = function(sequelize, DataTypes) {
     validate: {
       checkLoc() {
         if(this.country === null && this.province !== null || this.city !== null)
-          throw new Error('Cannot select City or State unless Country is selected!');
+        throw new Error('Cannot select City or State unless Country is selected!');
         if(this.province === null && this.city !== null)
-          throw new Error('Cannot select City unless State is selected');
+        throw new Error('Cannot select City unless State is selected');
+      }
     }
-  }
-});
-    User.associate = function (models) {
-      // We're saying that a favorite tv show or movie should belong to a user
-      //
-      User.hasMany(models.favorites, {
-        foreignKey: {
-          allowNull: false
-        }
-      });
-    };
-    return movieShow;
-  };
-
-
+  });
+  // User.associate = function (models) {
+  //   // We're saying that a favorite tv show or movie should belong to a user
+  //   //
+  //   User.hasMany(models.Favorite, {
+  //     foreignKey: {
+  //       allowNull: false
+  //     }
+  //   });
+    return User;
+  // };
   // Creating a custom method for our User model. This will check if an unhashed password entered by the user can be compared to the hashed password stored in our database
   User.prototype.validPassword = function(password) {
     return bcrypt.compareSync(password, this.password);
