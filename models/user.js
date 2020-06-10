@@ -38,10 +38,14 @@ module.exports = function(sequelize, DataTypes) {
   {
     validate: {
       checkLoc() {
-        if(this.country === null && this.province !== null || this.city !== null)
-        throw new Error('Cannot select City or State unless Country is selected!');
-        if(this.province === null && this.city !== null)
-        throw new Error('Cannot select City unless State is selected');
+        console.log(this.country);
+        console.log(this.state);
+        console.log(this.city);
+        console.log(this.country === null);
+        if(this.country === null && this.state !== null || this.country === null && this.city !== null)
+          throw new Error('Cannot select City or State unless Country is selected!');
+        if(this.state === null && this.city !== null)
+          throw new Error('Cannot select City unless State is selected');
       }
     }
   });
