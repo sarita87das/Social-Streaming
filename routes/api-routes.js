@@ -81,7 +81,7 @@ module.exports = function(app) {
     }
   });
 
-  app.get('/api/unfollow/:followingId', function(req, res) {
+  app.delete('/api/unfollow/:followingId', function(req, res) {
     if (!req.user) {
       // The user is not logged in, send back an empty object
       res.json({});
@@ -102,7 +102,7 @@ module.exports = function(app) {
     }
   });
 
-  app.get('/api/new-media', function(req, res) {
+  app.post('/api/new-media', function(req, res) {
     if (!req.user) {
       // The user is not logged in, send back an empty object
       res.json({});
@@ -120,7 +120,7 @@ module.exports = function(app) {
     }
   });
 
-  app.get('/api/new-favorite/:mediaId', function(req, res) {
+  app.post('/api/new-favorite/:mediaId', function(req, res) {
     if (!req.user) {
       // TODO: is the movie favorited by that user already?
       // The user is not logged in, send back an empty object
@@ -151,7 +151,6 @@ module.exports = function(app) {
           userId: req.user.userId,
           movieShowId: req.params.mediaId
         }
-        // TODO: how to get the id of the movie?
       });
       // Otherwise send back the user's email and id
       // Sending back a password, even a hashed password, isn't a good idea
