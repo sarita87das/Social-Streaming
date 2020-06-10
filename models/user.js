@@ -45,14 +45,12 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
-  // User.associate = function (models) {
-  //   // We're saying that a favorite tv show or movie should belong to a user
-  //   //
-  //   User.hasMany(models.Favorite, {
-  //     foreignKey: {
-  //       allowNull: false
-  //     }
-  //   });
+  User.associate = models => {
+    User.belongsToMany(models.User, { as: 'followers', through: models.Follow, onDelete: 'cascade'});
+    User.hasMany(models.Favorite);
+
+  }
+
     return User;
   // };
   // Creating a custom method for our User model. This will check if an unhashed password entered by the user can be compared to the hashed password stored in our database

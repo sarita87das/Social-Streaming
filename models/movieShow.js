@@ -15,13 +15,9 @@ module.exports = function (sequelize, DataTypes) {
       }
     },
   });
-  // MovieShow.associate = function (models) {
-  //   // We're saying that a favorite tv show or movie should belong to a user
-  //   MovieShow.hasMany(models.Favorite, {
-  //     foreignKey: {
-  //       allowNull: false
-  //     }
-  //   });
-  // };
+  MovieShow.associate = function (models) {
+    MovieShow.hasMany(models.Favorite);
+  };
+
   return MovieShow;
 };

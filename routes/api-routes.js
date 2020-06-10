@@ -57,13 +57,32 @@ module.exports = function(app) {
   });
 
   // follow a new user, userid being the person the user wants to follow
-  app.get('/api/follow/:userid', function(req, res) {
+  app.post('/api/follow/:otherUser', function(req, res) {
+    console.log(req.user.userId);
     if (!req.user) {
       // The user is not logged in, send back an empty object
       res.json({});
     } else {
       // TODO: get the user's id and use `userid` param to set who to follow
-      db.Follow.create();
+      db.Follow.create({
+        followingId: req.params.otherUser,
+        // userId: req.user
+      });
+
+      Product.create({
+        id: 1,
+        title: 'Chair',
+        categories: [
+          { id: 1, name: 'Alpha' },
+          { id: 2, name: 'Beta' }
+        ]
+      }, {
+        include: [{
+          association: Categories,
+          as: 'categories'
+        }]
+      });
+
       // Otherwise send back the user's email and id
       // Sending back a password, even a hashed password, isn't a good idea
       // TODO: change this, discuss with team
@@ -116,8 +135,12 @@ module.exports = function(app) {
     } else {
       // TODO: destroy the follow obj where the user's id and followed user's id match
       db.Favorite.create({
+
         // TODO: how to get the id of the movie
       });
+
+
+
       // Otherwise send back the user's email and id
       // Sending back a password, even a hashed password, isn't a good idea
       // TODO: change this, discuss with team
