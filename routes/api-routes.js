@@ -85,6 +85,13 @@ module.exports = function(app) {
     if (!req.user) {
       // The user is not logged in, send back an empty object
       res.json({});
+    } else if (db.Follow.findAll({
+      where: {
+        userId: req.user.userId,
+        followingId: req.params.followingId
+      }
+    }) === null) {
+      res.json({'error_message' : 'Not following that user'});
     } else {
       db.Follow.destroy({
         where: {
@@ -107,10 +114,19 @@ module.exports = function(app) {
       // The user is not logged in, send back an empty object
       res.json({});
     } else {
+      if (db.movieShow.findAll({
+        where: {
+          title: req.body.title
+        }
+      }) === null ) {
+        res.json({'error_message' : 'Media already exists'});
+      } else {
+        db.MovieShow.create({
+          title: req.body.title
+        });
+      }
       // TODO: create a new movie/show only if it cannot be found first!
-      db.MovieShow.create({
-        title: req.body.title
-      });
+
       // Otherwise send back the user's email and id
       // Sending back a password, even a hashed password, isn't a good idea
       // TODO: change this, discuss with team
@@ -122,17 +138,23 @@ module.exports = function(app) {
 
   app.post('/api/new-favorite/:mediaId', function(req, res) {
     if (!req.user) {
-      // TODO: is the movie favorited by that user already?
       // The user is not logged in, send back an empty object
       res.json({});
     } else {
-      db.Favorite.create({
-        userId: req.user.userId,
-        movieShowId: req.params.mediaId
-      });
+      if (db.Favorite.findAll({
+        where: {
+          userId: req.user.userId,
+          movieShowId: req.params.mediaId
+        }
+      }) === null ) {
+        res.json({'error_message': 'Media already favorited by user'});
+      } else {
+        db.Favorite.create({
+          userId: req.user.userId,
+          movieShowId: req.params.mediaId
+        });
+      }
 
-      // Otherwise send back the user's email and id
-      // Sending back a password, even a hashed password, isn't a good idea
       // TODO: change this, discuss with team
       res.json({
         title: req.body.title
