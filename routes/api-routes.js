@@ -71,21 +71,7 @@ module.exports = function(app) {
         // userId: req.user
       });
 
-      Product.create({
-        id: 1,
-        title: 'Chair',
-        categories: [
-          { id: 1, name: 'Alpha' },
-          { id: 2, name: 'Beta' }
-        ]
-      }, {
-        include: [{
-          association: Categories,
-          as: 'categories'
-        }]
-      });
-
-      // Otherwise send back the user's email and id
+      // Otherwise send back the user's username and id
       // Sending back a password, even a hashed password, isn't a good idea
       // TODO: change this, discuss with team
       res.json({
@@ -95,19 +81,23 @@ module.exports = function(app) {
     }
   });
 
-  app.get('/api/unfollow/:userid', function(req, res) {
+  app.get('/api/unfollow/:followingId', function(req, res) {
     if (!req.user) {
       // The user is not logged in, send back an empty object
       res.json({});
     } else {
-      // TODO: destroy the follow obj where the user's id and followed user's id match
-      db.Follow.destroy();
+      db.Follow.destroy({
+        where: {
+          followingId: req.params.followingId,
+          userId: req.user.userId
+        }
+      });
       // Otherwise send back the user's email and id
       // Sending back a password, even a hashed password, isn't a good idea
       // TODO: change this, discuss with team
       res.json({
         username: req.user.username,
-        id: req.user.id
+        id: req.user.userId
       });
     }
   });
@@ -117,7 +107,7 @@ module.exports = function(app) {
       // The user is not logged in, send back an empty object
       res.json({});
     } else {
-      // TODO: destroy the follow obj where the user's id and followed user's id match
+      // TODO: create a new movie/show only if it cannot be found first!
       db.MovieShow.create({
         title: req.body.title
       });
@@ -130,18 +120,16 @@ module.exports = function(app) {
     }
   });
 
-  app.get('/api/new-favorite', function(req, res) {
+  app.get('/api/new-favorite/:mediaId', function(req, res) {
     if (!req.user) {
+      // TODO: is the movie favorited by that user already?
       // The user is not logged in, send back an empty object
       res.json({});
     } else {
-      // TODO: destroy the follow obj where the user's id and followed user's id match
       db.Favorite.create({
-
-        // TODO: how to get the id of the movie
+        userId: req.user.userId,
+        movieShowId: req.params.mediaId
       });
-
-
 
       // Otherwise send back the user's email and id
       // Sending back a password, even a hashed password, isn't a good idea
@@ -152,13 +140,17 @@ module.exports = function(app) {
     }
   });
 
-  app.get('/api/delete-favorite', function(req, res) {
+  app.get('/api/delete-favorite/:mediaId', function(req, res) {
     if (!req.user) {
       // The user is not logged in, send back an empty object
       res.json({});
     } else {
       // TODO: destroy the follow obj where the user's id and followed user's id match
       db.Favorite.destroy({
+        where: {
+          userId: req.user.userId,
+          movieShowId: req.params.mediaId
+        }
         // TODO: how to get the id of the movie?
       });
       // Otherwise send back the user's email and id
