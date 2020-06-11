@@ -1,3 +1,9 @@
+
+html {
+  overflow-y: scroll;
+  height: 100%;
+}
+
 form.signup,
 form.login {
   margin-top: 50px;
@@ -9,7 +15,6 @@ body {
   background-size: cover;
   /* background-size: auto 100%; */
   font-family: sans-serif;
-  overflow-y: scroll;
 }
 
 .container {
@@ -65,13 +70,13 @@ body {
 }
 
 .card {
-  position: fixed;
+  position: relative;
   min-width: 100
   height: auto;
   margin: 10%
   top: 10%;
   left: 20%;
-  transform: translate(-125%, 45%);
+  /* transform: translate(-125%, 45%); */
   border-radius: 5px;
   background-color: #f2f2f2;
   padding: 20px;

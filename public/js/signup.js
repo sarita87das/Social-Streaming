@@ -14,6 +14,7 @@ $(document).ready(function() {
   function signUpUser(userData) {
     $.post('/api/signup', userData)
       .then(function() {
+        // TODO: log the user in w/ api/login route
         window.location.replace('/members');
         // If there's an error, handle it by throwing up a bootstrap alert
       })
