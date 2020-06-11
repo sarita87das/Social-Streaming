@@ -1,8 +1,12 @@
 $(document).ready(function() {
 
   function handleLoginErr(err) {
-    $('#alert .msg').text(JSON.stringify(err.responseJSON));
-    $('#alert').fadeIn(500);
+    console.log(err);
+    // var message = JSON.stringify(err.responseJSON.errors[0]
+    //   .message);
+    // console.log(message);
+    // $('#alert .msg').text(message.substring(1, message.length - 1));
+    // $('#alert').fadeIn(500);
   }
 
   // Does a post to the signup route. If successful, we are redirected to the members page
