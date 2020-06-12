@@ -8,6 +8,11 @@ module.exports = function (sequelize) {
     //   }
     // }
   });
+  Follow.associate = function(models) {
+    // Follow.hasOne(models.User, { as: 'follower'} );
+    // Follow.hasOne(models.User, { as: 'following'} );
+
+  };
 
   return Follow;
 };

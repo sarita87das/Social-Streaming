@@ -1,6 +1,10 @@
 // Requiring our models and passport as we've configured it
 var db = require('../models');
 var passport = require('../config/passport');
+var dotenv = require('dotenv').config();
+var { MovieDb } = require('moviedb-promise');
+// var moviedb = new MovieDb(process.env.movie_api_key);
+var moviedb = new MovieDb(dotenv.parsed.movie_api_key);
 
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
@@ -39,7 +43,7 @@ module.exports = function(app) {
 
   // Route for getting some data about our user to be used client side
   // used to populate the user's profile page
-  app.post('/api/user_data', function(req, res) {
+  /*app.post('/api/user_data', function(req, res) {
     var userData = {};
 
     console.log(req.body);
@@ -89,12 +93,10 @@ module.exports = function(app) {
         'user_data': userData
       });
     }
-  });
+  });*/
 
   // follow a new user, userid being the person the user wants to follow
   app.post('/api/follow/:otherUser', function(req, res) {
-
-    // TODO: https://stackoverflow.com/questions/7042340/error-cant-set-headers-after-they-are-sent-to-the-client#7789131
     console.log(req.user);
     if (!req.user) {
       // The user is not logged in, send back an empty object
@@ -225,4 +227,47 @@ module.exports = function(app) {
     }
   });
 
-};
+  // get top 10 by id in our db
+  app.get('/api/moviedetails/id/:mediaId', function(req, res) {
+    db.MovieShow.findOne({
+      where: {
+        id: req.params.mediaId
+      }
+    })
+      .then(function(result) {
+        console.log(result);
+        moviedb.searchMovie({ query: result.title }).then(data => {
+          console.log(data);
+          // get the results array w/ first 10 results
+          data = data.results.slice(0, 10);
+
+          res.json({'results': data});
+
+        }).catch(console.error)
+      });
+  });
+
+  // get the top 10 by title
+  app.get('/api/moviedetails/title/:title', function(req, res) {
+    moviedb.searchMovie({ query: req.params.title }).then(data => {
+      console.log(data);
+      // get the results array w/ first 10 results
+      data = data.results.slice(0, 10);
+
+      res.json({'results': data});
+
+  }).catch(console.error)
+
+  });
+
+  // get top 10 trending for the week
+  app.get('/api/moviedetails/topten', function(req, res) {
+    moviedb.trending({'media_type': 'all', 'time_window': 'week'}).then(data => {
+      console.log(data);
+      data = data.results.slice(0, 10);
+
+      res.json({'results': data});
+    });
+  });
+
+}
