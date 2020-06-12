@@ -3,20 +3,14 @@ form.login {
   margin-top: 50px;
 }
 
-#nav {
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-}
 
 body {
   background-image: url(https://i.kinja-img.com/gawker-media/image/upload/t_original/blc5raljkm1ly45jbqzd.png);
   background-repeat:repeat ;
   background-position-y: 70px;
   background-size: cover;
-  /* background-size: auto 100%; */
   font-family: sans-serif;
-  position: absolute;
+  position: relative;
 }
 
 .container {
@@ -45,44 +39,26 @@ body {
 
 }
 
-.container-2 {
-  position: absolute;        
-}
-
 .image-container {
-  position: absolute;
-  top: -60px;
-  transform: translate(50px, 50px);
-  transform: scale(0.40, 0.40);
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  border: 3px solid black;
-  padding: 10px;
-  z-index: -1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: static;
+
 }
 
 .card-1 {
   position: relative;
+  margin: 0 auto; /* Added */
+  float: none; /* Added */
+  margin-bottom: 10px; /* Added */
   text-align: center;
-  transform: translate(30%, 200%);
-  width: 50%;
   border: 3px solid black;
   padding: 30px;
+  width: -100%;
   background-color: #f2f2f2;
 }
 
-.container-4 {
-  position: relative;
-  top: 20%;
-  left: 90%;
-  transform: translate(-50%, -50%);
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  border: 3px solid black;
-  padding: 5px;
-  z-index: -1;
-
-}
 
 
 
