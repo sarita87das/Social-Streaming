@@ -40,55 +40,53 @@ module.exports = function(app) {
   // Route for getting some data about our user to be used client side
   // used to populate the user's profile page
   app.post('/api/user_data', function(req, res) {
+    var userData = {};
+
     console.log(req.body);
     if (!req.user) {
       // The user is not logged in, send back an empty object
       res.json({});
     } else {
-      let userData = {};
-      let favs = {};
-      let following = {};
-      let followers = {};
 
-      // get data
-      // db.User.findOne({
-      //   where: {
-      //     id: req.body.id
-      //   }
-      // }, {
-      //   include: [{
-      //     model: db.Favorite
-      //   }]
-      // })
-      // .then(function(result) {
-      //   userData = result;
-      //   delete userData[id];
-      //   delete userData[createdAt];
-      //   delete userData[updatedAt];
-      //   delete userData[password];
-      // });
-      // find faves
+      db.Favorite.findOne({
+        where: {
+          id: req.body.id
+        }
+      })
+        .then(function(result) {
+          userData = result;
+          delete userData.password;
+          delete userDat.updatedAt;
+        });
+
       db.Favorite.findAll({
         where: {
           UserId: req.body.id
         },
         include: [
-          { model: db.User, as: 'User' },
+          // { model: db.User, as: 'User' },
           { model: db.MovieShow, as: 'MovieShow' }
         ]
       }).then(function(result) {
-        console.log(result);
-
-
+        userData.favorites = result;
       });
 
       // find followers
-
-      // find following
+      db.Follow.findAll({
+        where: {
+          UserId: req.body.id
+        },
+        include:
+        [
+          { model: db.User, as: 'Following' }
+        ]
+      })
+        .then(function(result) {
+          userData.followers = result;
+        });
 
       res.json({
-        username: req.user.username,
-        id: req.user.id
+        'user_data': userData
       });
     }
   });
