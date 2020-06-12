@@ -73,8 +73,8 @@ module.exports = function(app) {
           UserId: req.body.id
         },
         include: [
-          { model: db.User},
-          { model: db.MovieShow}
+          { model: db.User, as: 'User' },
+          { model: db.MovieShow, as: 'MovieShow' }
         ]
       }).then(function(result) {
         console.log(result);
