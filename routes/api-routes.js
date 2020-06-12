@@ -39,26 +39,48 @@ module.exports = function(app) {
 
   // Route for getting some data about our user to be used client side
   // used to populate the user's profile page
-  app.get('/api/user_data', function(req, res) {
+  app.post('/api/user_data', function(req, res) {
     console.log(req.body);
     if (!req.user) {
       // The user is not logged in, send back an empty object
       res.json({});
     } else {
+      let userData = {};
+      let favs = {};
+      let following = {};
+      let followers = {};
+
       // get data
-      db.User.findOne({
+      // db.User.findOne({
+      //   where: {
+      //     id: req.body.id
+      //   }
+      // }, {
+      //   include: [{
+      //     model: db.Favorite
+      //   }]
+      // })
+      // .then(function(result) {
+      //   userData = result;
+      //   delete userData[id];
+      //   delete userData[createdAt];
+      //   delete userData[updatedAt];
+      //   delete userData[password];
+      // });
+      // find faves
+      db.Favorite.findAll({
         where: {
-          id: req.body.id
-        }
-      }, {
-        include: [{
-          model: db.Favorite
-        }]
-      })
-      .then(function(result) {
+          UserId: req.body.id
+        },
+        include: [
+          { model: db.User},
+          { model: db.MovieShow}
+        ]
+      }).then(function(result) {
         console.log(result);
+
+
       });
-      // find favs
 
       // find followers
 
