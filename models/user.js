@@ -38,21 +38,24 @@ module.exports = function(sequelize, DataTypes) {
   {
     validate: {
       checkLoc() {
-        if(this.country === null && this.province !== null || this.city !== null)
-        throw new Error('Cannot select City or State unless Country is selected!');
-        if(this.province === null && this.city !== null)
-        throw new Error('Cannot select City unless State is selected');
+        console.log(this.country);
+        console.log(this.state);
+        console.log(this.city);
+        console.log(this.country === null);
+        if(this.country === null && this.state !== null || this.country === null && this.city !== null)
+          throw new Error('Cannot select City or State unless Country is selected!');
+        if(this.state === null && this.city !== null)
+          throw new Error('Cannot select City unless State is selected');
       }
     }
   });
   User.associate = models => {
-    User.belongsToMany(models.User, { as: 'followers', through: models.Follow, onDelete: 'cascade'});
-    User.hasMany(models.Favorite);
+    User.belongsToMany(models.User, { as: 'follower', through: models.Follow, onDelete: 'CASCADE'});
+    // User.belongsToMany(models.User, { as: 'following', through: models.Follow, onDelete: 'CASCADE'});
+    User.hasMany(models.Favorite, { foreignKey: { allowNull: false }, onDelete: 'CASCADE' });
 
   }
 
-    return User;
-  // };
   // Creating a custom method for our User model. This will check if an unhashed password entered by the user can be compared to the hashed password stored in our database
   User.prototype.validPassword = function(password) {
     return bcrypt.compareSync(password, this.password);
@@ -62,5 +65,6 @@ module.exports = function(sequelize, DataTypes) {
   User.addHook('beforeCreate', function(user) {
     user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
   });
+
   return User;
 };

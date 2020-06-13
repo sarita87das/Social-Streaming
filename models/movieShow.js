@@ -9,14 +9,14 @@ module.exports = function (sequelize, DataTypes) {
     },
     service: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
       validate: {
         len: [1]
       }
     },
   });
   MovieShow.associate = function (models) {
-    MovieShow.hasMany(models.Favorite);
+    MovieShow.hasMany(models.Favorite, { foreignKey: { allowNull: false }, onDelete: 'CASCADE' });
   };
 
   return MovieShow;
