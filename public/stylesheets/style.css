@@ -1,3 +1,9 @@
+
+html {
+  overflow-y: scroll;
+  height: 100%;
+}
+
 form.signup,
 form.login {
   margin-top: 50px;
@@ -49,6 +55,7 @@ body {
 
 }
 
+
 .card-deck {
   display: flex;
   align-items: center;
@@ -58,7 +65,6 @@ body {
   margin: 0 auto; /* Added */
         float: none; /* Added */
     
-
 }
 
 
@@ -86,3 +92,4 @@ body {
 
 
 html { overflow: scroll; overflow-x:hidden;}
+
