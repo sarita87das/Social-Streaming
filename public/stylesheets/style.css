@@ -13,6 +13,7 @@ body {
   position: relative;
 }
 
+
 .container {
   position: fixed;
   top: 50%;
@@ -38,6 +39,7 @@ body {
   z-index: -1;
 
 }
+
 
 .image-container {
   display: flex;
