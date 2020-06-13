@@ -114,8 +114,27 @@
                         tempor faucibus. Pellentesque volutpat eleifend lacus, ac tempor dui rhoncus sed. Nunc a augue porttitor, fringilla.</p>
       </div>
     </div>
+
+  <script>
+    $(document ).ready(function() {
+      var queryURL = '/api/moviedetails/topten';
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).then(function(response) {
+      console.log(response);
+      for(var i = 0; i < 10; i++) {
+        $('#movie-' + i).append(`
+        //<div>Title:o a ${title}</div>
+        //<div>: ${title}</div>
+        // <div>Title: ${title}</div>
+        `);
+      }
+      console.log(response.Runtime);;
+});
+    });
     
-    
+    </script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="js/members.js"></script>
