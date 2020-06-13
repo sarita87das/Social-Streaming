@@ -38,10 +38,6 @@ module.exports = function(sequelize, DataTypes) {
   {
     validate: {
       checkLoc() {
-        console.log(this.country);
-        console.log(this.state);
-        console.log(this.city);
-        console.log(this.country === null);
         if(this.country === null && this.state !== null || this.country === null && this.city !== null)
           throw new Error('Cannot select City or State unless Country is selected!');
         if(this.state === null && this.city !== null)
@@ -49,9 +45,13 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
+  // through: models.Follow,
   User.associate = models => {
-    User.belongsToMany(models.User, { as: 'follower', through: models.Follow, onDelete: 'CASCADE'});
-    // User.belongsToMany(models.User, { as: 'following', through: models.Follow, onDelete: 'CASCADE'});
+    User.belongsToMany(models.User, { foreignKey: "followerId", as: 'followerId', through: models.Follows });
+    User.belongsToMany(models.User, { foreignKey: "followingId", as: 'followingId', through: models.Follows });
+
+    // User.belongsToMany(models.Follow, { as: 'follower', foreignKey: "followerId", through: models.Follow, onDelete: 'CASCADE'});
+    // User.belongsToMany(models.Follow, { as: 'following', through: models.Follow, onDelete: 'CASCADE'});
     User.hasMany(models.Favorite, { foreignKey: { allowNull: false }, onDelete: 'CASCADE' });
 
   }

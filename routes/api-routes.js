@@ -43,57 +43,72 @@ module.exports = function(app) {
 
   // Route for getting some data about our user to be used client side
   // used to populate the user's profile page
-  /*app.post('/api/user_data', function(req, res) {
+  app.post('/api/user_data', function(req, res) {
     var userData = {};
 
-    console.log(req.body);
     if (!req.user) {
       // The user is not logged in, send back an empty object
       res.json({});
     } else {
 
-      db.Favorite.findOne({
+      db.User.findOne({
+        attributes: ['username', 'createdAt', 'id'],
         where: {
           id: req.body.id
-        }
+        },
+        include: [
+          { model: db.User, as: 'followerId', attributes: ['username', 'createdAt', 'id']},
+          { model: db.User, as: 'followingId', attributes: ['username', 'createdAt', 'id']}
+
+
+        ]
       })
         .then(function(result) {
           userData = result;
-          delete userData.password;
-          delete userDat.updatedAt;
+
+          db.Favorite.findAll({
+            where: {
+              UserId: req.body.id
+            },
+            include: [
+              // { model: db.User, as: 'User' },
+              { model: db.MovieShow, as: 'MovieShow' }
+            ]
+          }).then(function(result) {
+            console.log('Favorites');
+            userData.dataValues.favorites = result;
+            console.log(userData);
+            res.json({
+              'user_data': userData
+            });
+          });
         });
 
-      db.Favorite.findAll({
-        where: {
-          UserId: req.body.id
-        },
-        include: [
-          // { model: db.User, as: 'User' },
-          { model: db.MovieShow, as: 'MovieShow' }
-        ]
-      }).then(function(result) {
-        userData.favorites = result;
-      });
+
+
 
       // find followers
-      db.Follow.findAll({
-        where: {
-          UserId: req.body.id
-        },
-        include:
-        [
-          { model: db.User, as: 'Following' }
-        ]
-      })
-        .then(function(result) {
-          userData.followers = result;
-        });
+      // db.Follows.findAll({
+      //   where: {
+      //     followingId: req.body.id
+      //   },
+      //   include:
+      //   [
+      //     { model: db.User, as: 'Users' }
+      //   ]
+      // })
+      //   .then(function(result) {
+      //     console.log('followers');
+      //     console.log(result);
+      //     userData.followers = result;
+      //   });
 
-      res.json({
-        'user_data': userData
-      });
+
+      console.log(userData);
+
+
     }
-  });*/
+  });
 
   // follow a new user, userid being the person the user wants to follow
   app.post('/api/follow/:otherUser', function(req, res) {
@@ -103,9 +118,9 @@ module.exports = function(app) {
       res.json({});
     } else {
       // TODO: get the user's id and use `userid` param to set who to follow
-      db.Follow.create({
+      db.Follows.create({
         followingId: req.params.otherUser,
-        UserId: req.user.id
+        followerId: req.user.id
       });
 
       // Otherwise send back the user's username and id
@@ -123,18 +138,18 @@ module.exports = function(app) {
     if (!req.user) {
       // The user is not logged in, send back an empty object
       res.json({});
-    } else if (db.Follow.findOne({
+    } else if (db.Follows.findOne({
       where: {
-        userId: req.user.id,
+        followerId: req.user.id,
         followingId: req.params.followingId
       }
     }) === null) {
       res.json({'error_message' : 'Not following that user'});
     } else {
-      db.Follow.destroy({
+      db.Follows.destroy({
         where: {
           followingId: req.params.followingId,
-          userId: req.user.id
+          followerId: req.user.id
         }
       });
       // Otherwise send back the user's email and id
