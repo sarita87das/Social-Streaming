@@ -64,30 +64,28 @@ module.exports = function(app) {
         ]
       })
         .then(function(result) {
-          console.log('User');
-          console.log(result);
           userData = result;
-          delete userData.password;
-          delete userData.updatedAt;
+
+          db.Favorite.findAll({
+            where: {
+              UserId: req.body.id
+            },
+            include: [
+              // { model: db.User, as: 'User' },
+              { model: db.MovieShow, as: 'MovieShow' }
+            ]
+          }).then(function(result) {
+            console.log('Favorites');
+            userData.dataValues.favorites = result;
+            console.log(userData);
+            res.json({
+              'user_data': userData
+            });
+          });
         });
 
 
-      db.Favorite.findAll({
-        where: {
-          UserId: req.body.id
-        },
-        include: [
-          // { model: db.User, as: 'User' },
-          { model: db.MovieShow, as: 'MovieShow' }
-        ]
-      }).then(function(result) {
-        console.log('Favorites');
-        console.log(result);
-        userData.favorites = result;
-        res.json({
-          'user_data': userData
-        });
-      });
+
 
       // find followers
       // db.Follows.findAll({
