@@ -1,9 +1,3 @@
-
-html {
-  overflow-y: scroll;
-  height: 100%;
-}
-
 form.signup,
 form.login {
   margin-top: 50px;
@@ -18,6 +12,7 @@ body {
   font-family: sans-serif;
   position: relative;
 }
+
 
 .container {
   position: fixed;
@@ -45,6 +40,7 @@ body {
 
 }
 
+
 .image-container {
   display: flex;
   align-items: center;
@@ -53,11 +49,24 @@ body {
 
 }
 
+.card-deck {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 50%;
+  margin: 0 auto; /* Added */
+        float: none; /* Added */
+    
+
+}
+
+
 .card-1 {
   position: relative;
   margin: 0 auto; /* Added */
   float: none; /* Added */
-  margin-bottom: 10px; /* Added */
+
   text-align: center;
   border: 3px solid black;
   padding: 30px;
@@ -65,7 +74,15 @@ body {
   background-color: #f2f2f2;
 }
 
+.jumbotron {
 
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 35%;
+  transform: translate(-50%, -50%);
+
+}
 
 
 html { overflow: scroll; overflow-x:hidden;}

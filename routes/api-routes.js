@@ -1,10 +1,11 @@
 // Requiring our models and passport as we've configured it
 var db = require('../models');
 var passport = require('../config/passport');
+const movie_api_key = 'df49692537d122e8f2ad0279c16b2715';
 var dotenv = require('dotenv').config();
 var { MovieDb } = require('moviedb-promise');
 // var moviedb = new MovieDb(process.env.movie_api_key);
-var moviedb = new MovieDb(dotenv.parsed.movie_api_key);
+var moviedb = new MovieDb(movie_api_key);
 
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
