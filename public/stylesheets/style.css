@@ -19,6 +19,7 @@ body {
   position: relative;
 }
 
+
 .container {
   position: fixed;
   top: 50%;
@@ -46,6 +47,7 @@ body {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 .container-2 {
   position: fixed;
   min-width: 100
@@ -59,14 +61,21 @@ body {
   padding: 20px;
   z-index: -1;
 =======
+=======
+
+>>>>>>> 8a31e3af90e52ece4dd1b5f90d68d16e8a5e1156
 .image-container {
   display: flex;
   align-items: center;
   justify-content: center;
   position: static;
 
+<<<<<<< HEAD
 >>>>>>> 19652b5202ff421573b562bd32b079301d111922
+=======
+>>>>>>> 8a31e3af90e52ece4dd1b5f90d68d16e8a5e1156
 }
+
 
 .card-deck {
   display: flex;
@@ -77,9 +86,9 @@ body {
   margin: 0 auto; /* Added */
         float: none; /* Added */
     
-
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 .card {
   position: relative;
@@ -95,6 +104,8 @@ body {
   border: 3px solid black;
   z-index: -1;
 =======
+=======
+>>>>>>> 8a31e3af90e52ece4dd1b5f90d68d16e8a5e1156
 
 .card-1 {
   position: relative;
@@ -106,7 +117,10 @@ body {
   padding: 30px;
   width: -100%;
   background-color: #f2f2f2;
+<<<<<<< HEAD
 >>>>>>> 19652b5202ff421573b562bd32b079301d111922
+=======
+>>>>>>> 8a31e3af90e52ece4dd1b5f90d68d16e8a5e1156
 }
 
 .jumbotron {
@@ -120,8 +134,14 @@ body {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 .body { position: absolute; }
 =======
 
 html { overflow: scroll; overflow-x:hidden;}
 >>>>>>> 19652b5202ff421573b562bd32b079301d111922
+=======
+
+html { overflow: scroll; overflow-x:hidden;}
+
+>>>>>>> 8a31e3af90e52ece4dd1b5f90d68d16e8a5e1156
