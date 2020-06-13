@@ -8,19 +8,23 @@ form.signup,
 form.login {
   margin-top: 50px;
 }
+
+
 body {
   background-image: url(https://i.kinja-img.com/gawker-media/image/upload/t_original/blc5raljkm1ly45jbqzd.png);
-  background-repeat:no-repeat ;
+  background-repeat:repeat ;
   background-position-y: 70px;
   background-size: cover;
-  /* background-size: auto 100%; */
   font-family: sans-serif;
+  position: relative;
 }
+
 
 .container {
   position: fixed;
   top: 50%;
   left: 50%;
+  width: 35%;
   transform: translate(-50%, -50%);
   border-radius: 5px;
   background-color: #f2f2f2;
@@ -30,7 +34,7 @@ body {
 }
 
 .container-1 {
-  position: fixed;
+  position: absolute;
   top: 15%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -42,58 +46,50 @@ body {
 
 }
 
-.container-2 {
-  position: fixed;
-  min-width: 100
-  height: auto;
-  top: 15%;
-  left: 20%;
-  transform: translate(-50%, -50%);
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  border: 3px solid black;
-  padding: 20px;
-  z-index: -1;
-}
 
 .image-container {
-  position: fixed;
-  top: -20%;
-  left: -20%;
-  transform: translate(-50%, -50%);
-  transform: scale(0.3, 0.3);
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  border: 3px solid black;
-  padding: 20px;
-  z-index: -1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: static;
+
 }
 
-.card {
-  position: relative;
-  min-width: 100
-  height: auto;
-  margin: 10%
-  top: 10%;
-  left: 20%;
-  /* transform: translate(-125%, 45%); */
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 20px;
-  border: 3px solid black;
-  z-index: -1;
+
+.card-deck {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 50%;
+  margin: 0 auto; /* Added */
+        float: none; /* Added */
+    
 }
+
 
 .card-1 {
-  position: absolute;
-  margin: auto;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 30%;
+  position: relative;
+  margin: 0 auto; /* Added */
+  float: none; /* Added */
+
+  text-align: center;
   border: 3px solid black;
-  padding: 50px;
+  padding: 30px;
+  width: -100%;
   background-color: #f2f2f2;
 }
 
-.body { position: absolute; }
+.jumbotron {
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 35%;
+  transform: translate(-50%, -50%);
+
+}
+
+
+html { overflow: scroll; overflow-x:hidden;}
+
