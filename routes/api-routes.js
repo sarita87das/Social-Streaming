@@ -4,8 +4,9 @@ var passport = require('../config/passport');
 const movie_api_key = 'df49692537d122e8f2ad0279c16b2715';
 var dotenv = require('dotenv').config();
 var { MovieDb } = require('moviedb-promise');
-// var moviedb = new MovieDb(process.env.movie_api_key);
-var moviedb = new MovieDb(movie_api_key);
+var moviedb = new MovieDb(dotenv.parsed.movie_api_key);
+
+var { Op } = require("sequelize");
 
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
@@ -110,6 +111,18 @@ module.exports = function(app) {
     }
   });
 
+  app.post('/api/user', function(req, res) {
+    db.User.findAll({
+      attributes: ['username', 'createdAt', 'id'],
+      where: {
+        username: {[Op.like] : `${req.body.username}%` }
+      }
+    })
+    .then(function(result) {
+      res.json(result);
+    });
+  });
+
   // follow a new user, userid being the person the user wants to follow
   app.post('/api/follow/:otherUser', function(req, res) {
     console.log(req.user);
@@ -187,7 +200,6 @@ module.exports = function(app) {
   });
 
   app.post('/api/favorite/:mediaId', function(req, res) {
-    console.log(req.user.id);
     if (!req.user) {
       // The user is not logged in, send back an empty object
       res.json({});
@@ -198,12 +210,9 @@ module.exports = function(app) {
           movieShowId: req.params.mediaId
         }
       }).then(function(result) {
-        console.log('result');
-        console.log(result);
         if(result !== null) {
           res.json({'error_message': 'Media already favorited by user'});
         } else {
-          console.log(req);
           db.Favorite.create({
             UserId: req.user.id,
             MovieShowId: req.params.mediaId
@@ -222,7 +231,6 @@ module.exports = function(app) {
   });
 
   app.post('/api/unfavorite/:mediaId', function(req, res) {
-    console.log(req.user.id);
     if (!req.user) {
       // The user is not logged in, send back an empty object
       res.json({});
@@ -250,15 +258,19 @@ module.exports = function(app) {
       }
     })
       .then(function(result) {
-        console.log(result);
-        moviedb.searchMovie({ query: result.title }).then(data => {
-          console.log(data);
-          // get the results array w/ first 10 results
-          data = data.results.slice(0, 10);
+        if(result === undefined || result === null) res.json({status: 'error', message: 'movie not found'});
+        else {
 
-          res.json({'results': data});
+          moviedb.searchMovie({ query: result.title }).then(data => {
+            console.log(data);
+            // get the results array w/ first 10 results
+            data = data.results.slice(0, 10);
 
-        }).catch(console.error)
+            res.json({'results': data});
+
+          }).catch(console.error)
+        }
+
       });
   });
 
