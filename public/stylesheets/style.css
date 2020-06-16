@@ -44,6 +44,19 @@ body {
     
 }
 
+.card-2 {
+
+  
+  position: absolute;
+  margin: 0 auto; /* Added */
+  float: none; /* Added */
+right: -60%;
+  text-align: center;
+  border: 3px solid black;
+  padding: 50px;
+  width: 80%;
+  background-color: #f2f2f2;
+}
 
 .card-1 {
   position: relative;
