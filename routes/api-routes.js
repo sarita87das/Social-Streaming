@@ -76,38 +76,12 @@ module.exports = function(app) {
               { model: db.MovieShow, as: 'MovieShow' }
             ]
           }).then(function(result) {
-            console.log('Favorites');
             userData.dataValues.favorites = result;
-            console.log(userData);
             res.json({
               'user_data': userData
             });
           });
         });
-
-
-
-
-      // find followers
-      // db.Follows.findAll({
-      //   where: {
-      //     followingId: req.body.id
-      //   },
-      //   include:
-      //   [
-      //     { model: db.User, as: 'Users' }
-      //   ]
-      // })
-      //   .then(function(result) {
-      //     console.log('followers');
-      //     console.log(result);
-      //     userData.followers = result;
-      //   });
-
-
-      console.log(userData);
-
-
     }
   });
 
