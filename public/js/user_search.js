@@ -12,14 +12,15 @@ $(document).ready(function () {
             .then(function (result) {
                 console.log(result);
                 for (var i = 0; i <= 10; i++) {
-                    var uName = result[i].username
+                    var uName = result[i].username;
                     var uID = result[i].id;
 
                     $('#userData').append(`
           <div
           <p>Username: ${uName}</p>
           <p>User Id: ${uID}</p>
-          <button id = "followUser" type="button" class="btn btn-primary" data-id="user-id">Follow</button>
+          <button type="button" class="btn btn-primary followUser" data-id="${uID}">Follow</button>
+
           </div>
           `);
                     console.log(result[1].username);
@@ -30,20 +31,41 @@ $(document).ready(function () {
 })
 
 
-$("#followUser").on("click", function (event) {
+$(document).on("click", ".followUser", function (event) {
     // Make sure to preventDefault on a submit event.
     event.preventDefault();
-    var userId = $(this).data("user-id");
+    console.log("anything")
+    var userId = $(this).data("id");
+    console.log(userId);
 
 
     // Send the POST request.
-    $.post('/api/follow/:' + userId)
-        .then(
-            function () {
-                console.log("userfollowed");
-                alert("user followed!")
+    $.post('/api/follow/' + userId)
+        .then(function (response) {
+
+                console.log(response);
                 // Reload the page
                 location.reload();
             }
         );
 });
+
+// $(document).on("click", ".unFollowUser", function (event) {
+//     // Make sure to preventDefault on a submit event.
+//     event.preventDefault();
+//     console.log("anything")
+//     var userId = $(this).data("id");
+//     console.log(userId);
+
+
+//     // Send the POST request.
+//     $.post('/api/unfollow/' + userId)
+//         .then(function (response) {
+
+//                 console.log(response);
+//                 // Reload the page
+//                 location.reload();
+//             }
+//         );
+// });
+{/* <button type="button" class="btn btn-primary unFollowUser" data-id="${uID}">UnFollow</button> */}
