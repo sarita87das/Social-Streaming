@@ -126,9 +126,10 @@ module.exports = function(app) {
   // follow a new user, userid being the person the user wants to follow
   app.post('/api/follow/:otherUser', function(req, res) {
     console.log(req.user);
+    console.log(req.User);
     if (!req.user) {
       // The user is not logged in, send back an empty object
-      res.json({});
+      res.json({'status':'unauthenticated'});
     } else {
       // TODO: get the user's id and use `userid` param to set who to follow
       db.Follows.create({
@@ -176,6 +177,7 @@ module.exports = function(app) {
   });
 
   app.post('/api/new-media', function(req, res) {
+    console.log(req.body);
     if (!req.user) {
       // The user is not logged in, send back an empty object
       res.json({});

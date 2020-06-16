@@ -1,7 +1,5 @@
 $(document).ready(function () {
     
-
-
     $("#msadd-btn").on("click", function (event) {
         event.preventDefault();
 
