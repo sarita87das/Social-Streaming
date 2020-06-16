@@ -70,28 +70,37 @@
         <form class="addMovieShow">
           <div class="form-group">
             <label for="movie-or-show"></label>
-            <input type="text" class="form-control" id="movie-show-input" placeholder="Movie or Show">
+            <input type="text" class="form-control" id="movie-show-add" placeholder="Movie or Show">
           </div>
-          <button type="submit" class="btn btn-primary">Add</button>
+          <button id ="msadd-btn" data-msadd="addbtn" type="submit" class="btn btn-primary">Add</button>
         </form>
+        <div id="add-movie"></div>
         <hr/>
+
         <h2 style="text-align: center;" >Search For Movie or TV Show</h2>
         <form class="searchMovieShow">
           <div class="form-group">
             <label for="search-movie-or-show"></label>
             <input type="text" class="form-control" id="movie-show-input" placeholder="Movie or Show">
           </div>
-          <button type="submit" class="btn btn-primary">Search</button>
+          <button id="movie-showbtn" type="submit" class="btn btn-primary">Search</button>
         </form>
       </div>
     </div>
   </div>
+  <div id ="searchResultsCard" class="card" style="width: 25rem;">
+    <div class="card-body">
+      <h5 class="card-title">Search Results</h5>
+      <button id="close-search" type="submit" class="btn btn-primary">Close</button>
+      <p id="returnedData" class="card-body text-center"></p>
+    </div>
+  </div>
+  <div id="returnedData" class="card-body text-center"></div>
 
-  <script>
-    
-  </script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="js/movieForm.js"></script>
+
 
 </body>
 

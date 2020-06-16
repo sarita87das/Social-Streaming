@@ -10,8 +10,7 @@ $(document).ready(function () {
             // console.log(response.results.slice(0, 9));
             console.log(response);
             for (var i = 0; i < 10; i++) {
-                console.log("please work");
-                console.log("it worked?")
+                            
                 var imageURL = "https://image.tmdb.org/t/p/w185";
                 var plot = response.results[i].overview;
                 var mediaType = response.results[i].media_type;
@@ -43,4 +42,19 @@ $(document).ready(function () {
     
         });
     })
+    
+    $("#fav-ms").on("click", function(event) {
+        var favId = $(this).data("mediaId");
+    
+        // Send the request.
+        $.ajax("/api/favorite/" + favId, {
+        //   type: "POST" or" "PUT"
+        }).then(
+          function() {
+            console.log("Favorited", FavId);
+            // Reload the page to get the updated list
+            location.reload();
+          }
+        );
+      });
     
