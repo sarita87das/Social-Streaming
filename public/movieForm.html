@@ -36,6 +36,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="movieForm.html">Add Movie/Show <i class="fa fa-film" aria-hidden="true"></i></a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="user_search.html">Search for Users <i class="fa fa-users" aria-hidden="true"></i></a>
+          </li>
         </ul>
     </div>
 </nav>
@@ -60,22 +63,46 @@
     </ul>
   </div>
 </nav>
-  <div class="container">
+  <div class="card-2">
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
-        <h2>Add Movie or TV Show</h2>
+        <h2 style="text-align: center;">Add Movie or TV Show</h2>
         <form class="addMovieShow">
           <div class="form-group">
-            <label for="movie-or-show">Enter Here</label>
+            <label for="movie-or-show"></label>
+            <input type="text" class="form-control" id="movie-show-add" placeholder="Movie or Show">
+          </div>
+          <button id ="msadd-btn" data-msadd="addbtn" type="submit" class="btn btn-primary">Add</button>
+        </form>
+        <div id="add-movie"></div>
+        <hr/>
+
+        <h2 style="text-align: center;">Search For Movie or TV Show</h2>
+        <form class="searchMovieShow">
+          <div class="form-group">
+            <label for="search-movie-or-show"></label>
             <input type="text" class="form-control" id="movie-show-input" placeholder="Movie or Show">
           </div>
-          <button type="submit" class="btn btn-primary">Add</button>
+          <button id="movie-showbtn" type="submit" class="btn btn-primary">Search</button>
         </form>
       </div>
+    </div> 
+    
+    <div id ="searchResultsCard">
+    <div class="card-body">
+      <h5 class="card-title">Search Results</h5>
+      <button id="close-search" type="submit" class="btn btn-primary">Close</button>
+      <p id="returnedData" class="card-body text-center"></p>
     </div>
   </div>
+  <div id="returnedData" class="card-body text-center"></div>
+  </div>
+ 
+
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="js/movieForm.js"></script>
+
 
 </body>
 
