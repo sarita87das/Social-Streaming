@@ -1,9 +1,3 @@
-
-html {
-  overflow-y: scroll;
-  height: 100%;
-}
-
 form.signup,
 form.login {
   margin-top: 50px;
@@ -13,12 +7,10 @@ form.login {
 body {
   background-image: url(https://i.kinja-img.com/gawker-media/image/upload/t_original/blc5raljkm1ly45jbqzd.png);
   background-repeat:repeat ;
-  background-position-y: 70px;
+  background-position: center center;
   background-size: cover;
-  font-family: sans-serif;
-  position: relative;
+  position: absolute;
 }
-
 
 .container {
   position: fixed;
@@ -33,6 +25,7 @@ body {
   z-index: -1;
 }
 
+<<<<<<< HEAD
 .container-1 {
   position: absolute;
   top: 15%;
@@ -64,11 +57,13 @@ body {
 =======
 
 >>>>>>> 8a31e3af90e52ece4dd1b5f90d68d16e8a5e1156
+=======
+>>>>>>> fd23c8d8d26ccf59314992e0ba0e2c071ac319f5
 .image-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  position: static;
+  position: relative;
 
 <<<<<<< HEAD
 >>>>>>> 19652b5202ff421573b562bd32b079301d111922
@@ -76,18 +71,18 @@ body {
 >>>>>>> 8a31e3af90e52ece4dd1b5f90d68d16e8a5e1156
 }
 
-
 .card-deck {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 50%;
+  width: 90%;
   height: 50%;
   margin: 0 auto; /* Added */
         float: none; /* Added */
     
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 .card {
@@ -106,6 +101,21 @@ body {
 =======
 =======
 >>>>>>> 8a31e3af90e52ece4dd1b5f90d68d16e8a5e1156
+=======
+.card-2 {
+
+  
+  position: absolute;
+  margin: 0 auto; /* Added */
+  float: none; /* Added */
+right: -60%;
+  text-align: center;
+  border: 3px solid black;
+  padding: 50px;
+  width: 80%;
+  background-color: #f2f2f2;
+}
+>>>>>>> fd23c8d8d26ccf59314992e0ba0e2c071ac319f5
 
 .card-1 {
   position: relative;
@@ -114,8 +124,8 @@ body {
 
   text-align: center;
   border: 3px solid black;
-  padding: 30px;
-  width: -100%;
+  padding: 50px;
+  width: 80%;
   background-color: #f2f2f2;
 <<<<<<< HEAD
 >>>>>>> 19652b5202ff421573b562bd32b079301d111922
@@ -141,6 +151,8 @@ body {
 html { overflow: scroll; overflow-x:hidden;}
 >>>>>>> 19652b5202ff421573b562bd32b079301d111922
 =======
+
+
 
 html { overflow: scroll; overflow-x:hidden;}
 
