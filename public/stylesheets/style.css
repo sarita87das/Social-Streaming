@@ -25,50 +25,12 @@ body {
   z-index: -1;
 }
 
-<<<<<<< HEAD
-.container-1 {
-  position: absolute;
-  top: 15%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  border: 3px solid black;
-  padding: 10px;
-  z-index: -1;
-
-}
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-.container-2 {
-  position: fixed;
-  min-width: 100
-  height: auto;
-  top: 15%;
-  left: 20%;
-  transform: translate(-50%, -50%);
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  border: 3px solid black;
-  padding: 20px;
-  z-index: -1;
-=======
-=======
-
->>>>>>> 8a31e3af90e52ece4dd1b5f90d68d16e8a5e1156
-=======
->>>>>>> fd23c8d8d26ccf59314992e0ba0e2c071ac319f5
 .image-container {
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
 
-<<<<<<< HEAD
->>>>>>> 19652b5202ff421573b562bd32b079301d111922
-=======
->>>>>>> 8a31e3af90e52ece4dd1b5f90d68d16e8a5e1156
 }
 
 .card-deck {
@@ -82,26 +44,6 @@ body {
     
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-.card {
-  position: relative;
-  min-width: 100
-  height: auto;
-  margin: 10%
-  top: 10%;
-  left: 20%;
-  /* transform: translate(-125%, 45%); */
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 20px;
-  border: 3px solid black;
-  z-index: -1;
-=======
-=======
->>>>>>> 8a31e3af90e52ece4dd1b5f90d68d16e8a5e1156
-=======
 .card-2 {
 
   
@@ -115,7 +57,6 @@ right: -60%;
   width: 80%;
   background-color: #f2f2f2;
 }
->>>>>>> fd23c8d8d26ccf59314992e0ba0e2c071ac319f5
 
 .card-1 {
   position: relative;
@@ -127,10 +68,6 @@ right: -60%;
   padding: 50px;
   width: 80%;
   background-color: #f2f2f2;
-<<<<<<< HEAD
->>>>>>> 19652b5202ff421573b562bd32b079301d111922
-=======
->>>>>>> 8a31e3af90e52ece4dd1b5f90d68d16e8a5e1156
 }
 
 .jumbotron {
@@ -143,17 +80,7 @@ right: -60%;
 
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-.body { position: absolute; }
-=======
-
-html { overflow: scroll; overflow-x:hidden;}
->>>>>>> 19652b5202ff421573b562bd32b079301d111922
-=======
 
 
 
 html { overflow: scroll; overflow-x:hidden;}
-
->>>>>>> 8a31e3af90e52ece4dd1b5f90d68d16e8a5e1156
