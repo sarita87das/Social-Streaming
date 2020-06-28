@@ -11,4 +11,8 @@ mysqyl, sequelize, express, passport, moviedb-promise
 
 Node.js, MySql, Sequelize, Passport, Express, Moviedb-promise, HTML, JS, Bootstrap, Jquery
 
+## Deployed Link
+
+https://ru-project2.herokuapp.com/index.html
+
 
