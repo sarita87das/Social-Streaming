@@ -10,6 +10,9 @@ Created an app where users would be able to login and check the feed based on wh
 # Tools/Languages used:
  HTML, CSS, JavaScript, jQuery, API, Ajax, Sequelize, Node, and Express. 
 
+![demo-gif](https://github.com/jben817/Social-Streaming/blob/master/socialstreaming.gif)
+
+
 
 
 
