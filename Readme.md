@@ -12,7 +12,8 @@ Created an app where users would be able to login and check the feed based on wh
 
 ![demo-gif](https://github.com/jben817/Social-Streaming/blob/master/socialstreaming.gif)
 
-
+# Deployed Link To Heroku :
+# ru-project2.herokuapp.com 
 
 
 
